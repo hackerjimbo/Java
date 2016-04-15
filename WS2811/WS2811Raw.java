@@ -45,7 +45,7 @@ public class WS2811Raw {
      * Send the data to the string.
      * @param data An array of ints, one per unit in the string. This must me
      * the same length as used for the ws2811_init method.
-     * @return 
+     * @return If it worked.
      */
     public static native boolean ws2811_update (int[] data);
     /**
