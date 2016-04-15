@@ -16,7 +16,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package WS2811;
 
 /**
  * Provide a sensible interface to the WS2811 library.
