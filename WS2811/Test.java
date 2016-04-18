@@ -12,28 +12,55 @@ public class Test {
     
     public static void main(String[] args) throws InterruptedException
     {
+	System.out.println ("Running main program");
+	
         System.load ("/home/pi/libws2811.so");
-        
-        WS2811 w = new WS2811 (8, 8, true, false, true, WS2811Raw.WS2811_STRIP_GRB, 0.2);
-        
-        
-        for (int x = 0; x < 8; ++x)
-            for (int y = 0; y < 8; ++y) {
-                w.setPixel(x, y, 128, 0, 0);
+
+	/* Unicorn HAT */
+	
+	Mapping m = new Snake (new FlipX (new SwapXY (7, 8)));
+	
+	System.out.println (m);
+
+	final Point in = m.getOriginalMax ();
+
+	final int i_width = in.getX () + 1;
+	final int i_height = in.getY () + 1;
+	
+	System.out.println ("Input width " + i_width + " height " + i_height);
+	
+	final Point out = m.getOutMax ();
+	
+	final int o_width = out.getX () + 1;
+	final int o_height = out .getY () + 1;
+
+	System.out.println ("Output width " + o_width + " height " + o_height);
+
+        WS2811 w = new WS2811 (i_width, i_height, m, WS2811Raw.WS2811_STRIP_GRB, 0.1);
+
+	/* Unicorn pHAT
+	final int width = 8;
+	final int height = 4;
+
+        WS2811 w = new WS2811 (width, height, false, false, true, false, WS2811Raw.WS2811_STRIP_GRB, 0.99); */
+                
+	for (int y = 0; y < i_height; ++y)
+	    for (int x = 0; x < i_width; ++x) {
+                w.setPixel(new Point (x, y), 128, 0, 0);
                 w.show();
                 Thread.sleep (50);
             }
         
-        for (int x = 0; x < 8; ++x)
-            for (int y = 0; y < 8; ++y) {
-                w.setPixel(x, y, 0, 128, 0);
+        for (int x = 0; x < i_width; ++x)
+            for (int y = 0; y < i_height; ++y) {
+                w.setPixel(new Point (x, y), 0, 128, 0);
                 w.show();
                 Thread.sleep (50);
             }
         
-        for (int x = 0; x < 8; ++x)
-            for (int y = 0; y < 8; ++y) {
-                w.setPixel(x, y, 0, 0, 128);
+	for (int y = 0; y < i_height; ++y)
+	    for (int x = 0; x < i_width; ++x) {
+                w.setPixel(new Point (x, y), 0, 0, 128);
                 w.show();
                 Thread.sleep (50);
             }
