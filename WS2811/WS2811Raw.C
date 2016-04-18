@@ -25,7 +25,7 @@ extern "C" {
 JNIEXPORT
 jboolean
 JNICALL
-Java_WS2811_WS2811Raw_ws2811_1init (JNIEnv *env, jclass cls, jint type, jint length)
+Java_WS2811Raw_ws2811_1init (JNIEnv *env, jclass cls, jint type, jint length)
 {
   if (in_use)
     return JNI_FALSE;
@@ -54,7 +54,7 @@ Java_WS2811_WS2811Raw_ws2811_1init (JNIEnv *env, jclass cls, jint type, jint len
 JNIEXPORT
 jboolean
 JNICALL
-Java_WS2811_WS2811Raw_ws2811_1brightness (JNIEnv *env, jclass cls, jint brightness)
+Java_WS2811Raw_ws2811_1brightness (JNIEnv *env, jclass cls, jint brightness)
 {
   if (!in_use)
     return JNI_FALSE;
@@ -69,7 +69,7 @@ Java_WS2811_WS2811Raw_ws2811_1brightness (JNIEnv *env, jclass cls, jint brightne
 JNIEXPORT
 jboolean
 JNICALL
-Java_WS2811_WS2811Raw_ws2811_1update (JNIEnv *env, jclass cls, jintArray jdata)
+Java_WS2811Raw_ws2811_1update (JNIEnv *env, jclass cls, jintArray jdata)
 {
   if (!in_use)
     return JNI_FALSE;
@@ -100,7 +100,7 @@ Java_WS2811_WS2811Raw_ws2811_1update (JNIEnv *env, jclass cls, jintArray jdata)
 JNIEXPORT
 jboolean
 JNICALL
-Java_WS2811_WS2811Raw_ws2811_1wait (JNIEnv *env, jclass cls)
+Java_WS2811Raw_ws2811_1wait (JNIEnv *env, jclass cls)
 {
   if (!in_use)
     return JNI_FALSE;
@@ -115,7 +115,7 @@ Java_WS2811_WS2811Raw_ws2811_1wait (JNIEnv *env, jclass cls)
 JNIEXPORT
 jboolean
 JNICALL
-Java_WS2811_WS2811Raw_ws2811_1close (JNIEnv *env, jclass cls)
+Java_WS2811Raw_ws2811_1close (JNIEnv *env, jclass cls)
 {
   const bool result = in_use;
 
