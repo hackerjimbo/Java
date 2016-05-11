@@ -16,8 +16,19 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * A class to describe a point. It is composed of an integer x co-ordinate and 
+ * an integer y co-ordinate.
+ * @author Jim Darby
+ */
+
 public class Point
 {
+    /**
+     * Construct from a given x and y value.
+     * @param x
+     * @param y 
+     */
     public Point (int x, int y)
     {
 	if (x < 0 || y < 0)
@@ -27,26 +38,46 @@ public class Point
 	y_ = y;
     }
     
+    /**
+     * Obtain the x value.
+     * @return The x value.
+     */
     public int getX ()
     {
 	return x_;
     }
     
+    /**
+     * Obtain the y value.
+     * @return The y value.
+     */
     public int getY ()
     {
 	return y_;
     }
     
+    /**
+     * Convert the object to a string.
+     * @return A string representing the point.
+     */
     public String toString ()
     {
 	return "(" + x_ + ',' + y_ + ')';
     }
 
+    /**
+     * Given another point p, is this point within the area of the square of
+     * values created between the origin and the values of p.
+     * @param p
+     * @return True if we've inside the region.
+     */
     public boolean inside (Point p)
     {
 	return x_ <= p.x_ && y_ <= p.y_;
     }
     
+    /** The value of x. */
     private final int x_;
+    /** The value of y. */
     private final int y_;
 }
