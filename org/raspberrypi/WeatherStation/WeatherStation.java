@@ -1,8 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 Jim Darby and the Raspberry Pi Foundation.
+ *
+ * This software is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package org.raspberrypi.WeatherStation;
 
 import org.raspberrypi.WeatherStation.DeviceDrivers.*;
@@ -214,11 +226,17 @@ public class WeatherStation {
                 }
                 
                 if (adc1 != null) {
-                    final int wind_adc = adc1.read (1, 16, 1);
-                    final double wind_dir = direction.angleFromADC (wind_adc);
+                    try {
+                        final int wind_adc = adc1.read (1, 16, 1);
+                        final double wind_dir = direction.angleFromADC (wind_adc);
                     
-                    if (wind_dir >= 0)
-                        wind_directions.add (wind_dir);
+                        if (wind_dir >= 0)
+                            wind_directions.add (wind_dir);
+                    }
+                    
+                    catch (IOException e) {
+                        log.log (Level.WARNING, "Wind direction read failed: {0}", e.getMessage ());
+                    }
                 }
                 
                 if (adc2 != null) {
